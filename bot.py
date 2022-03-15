@@ -7,9 +7,9 @@ client = discord.Client()
 @client.event
 async def on_message(message):
     if message.content == '/start':
-        os.system('~/MCserver/start.sh')
+        os.system('~/MCserverbot/start.sh')
         await message.channel.send('Server Started')
     if message.content == '/stop':
-        os.system('~/MCserver/stop.sh')
+        os.system('~/MCserverbot/stop.sh')
         await message.channel.send('Server Stopped')
 client.run(TOKEN)
