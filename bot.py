@@ -6,10 +6,10 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 @client.event
 async def on_message(message):
-    if message.content == '/start':
+    if message.content == '/startMC':
         os.system('~/MCserverbot/start.sh')
         await message.channel.send('Server Started')
-    if message.content == '/stop':
+    if message.content == '/stopMC':
         os.system('~/MCserverbot/stop.sh')
         await message.channel.send('Server Stopped')
 client.run(TOKEN)
