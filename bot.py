@@ -12,4 +12,7 @@ async def on_message(message):
     if message.content == '/stopMC':
         os.system('~/MCserverbot/stop.sh')
         await message.channel.send('Server Stopped')
+    if message.content == '/ipMC':
+        os.popen('grep server-ip ~/MCserver/server.properties')
+        await message.channel.send(os.popen('grep server-ip ~/MCserver/server.properties').read())
 client.run(TOKEN)
