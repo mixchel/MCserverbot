@@ -8,10 +8,12 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 bot = commands.Bot(command_prefix='>')
-server = MinecraftServer.lookup("192.168.196.13")
+def get_ip():
+    return (os.popen('grep server-ip ~/MCserver/server.properties').read())[9:]
+server = MinecraftServer.lookup(get_ip())
 @bot.command(name='ip')
 async def ipcheck(ctx):
-    await ctx.send(os.popen('grep server-ip ~/MCserver/server.properties').read())
+    await ctx.send(get_ip())
 @bot.command(name='start')
 async def start(ctx):
     os.system('~/MCserverbot/start.sh')
@@ -33,4 +35,5 @@ async def stop(ctx):
     os.system('~/MCserverbot/stop.sh')
     await ctx.send('Server Stopped')
 bot.run(TOKEN)
+
 
