@@ -29,7 +29,7 @@ async def start(ctx):
             started = 1
             break
     print(started)
-    if started == 0:print("There was an error starting server")
+    if started == 0:ctx.send("There was an error starting server")
 @bot.command(name='stop')
 async def stop(ctx):
     os.system('ssh michel@192.168.15.88 \'~/MCserverbot/stop.sh\'')
