@@ -9,7 +9,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 bot = commands.Bot(command_prefix='>')
 def get_ip():
-    return (os.popen('grep server-ip ~/MCserver/server.properties').read())[9:]
+    return (os.popen('grep server-ip ~/MCserver/server.properties').read())[10:]
 server = MinecraftServer.lookup(get_ip())
 @bot.command(name='ip')
 async def ipcheck(ctx):
