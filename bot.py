@@ -9,8 +9,8 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 bot = commands.Bot(command_prefix='>')
 def get_ip():
-    return (os.popen('ssh michel@192.168.15.88 \'grep server-ip ~/MCserver/server.properties\'').read())[10:]
-server = JavaServer.lookup(get_ip())
+    return (os.popen('ssh michel@192.168.15.88 \'grep server-ip ~/MCserver/server.properties\'').read())[10:-1]
+server = JavaServer.lookup(get_ip()+":25565")
 @bot.command(name='ip')
 async def ipcheck(ctx):
     await ctx.send(get_ip())
@@ -24,12 +24,14 @@ async def start(ctx):
             server.ping()
         except:
             started = 0
+            print(f"ping test {i+1} failed")
         else:
             await ctx.send('Server started sucesfully')
             started = 1
             break
     print(started)
-    if started == 0:ctx.send("There was an error starting server")
+    if started == 0:
+        await ctx.send('There was an error starting server')
 @bot.command(name='stop')
 async def stop(ctx):
     os.system('ssh michel@192.168.15.88 \'~/MCserverbot/stop.sh\'')
