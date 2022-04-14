@@ -16,7 +16,7 @@ async def ipcheck(ctx):
     await ctx.send(get_ip())
 @bot.command(name='start')
 async def start(ctx):
-    os.system('ssh michel@192.168.15.88 ~/MCserverbot/start.sh')
+    os.system('ssh michel@192.168.15.88 \'~/MCserverbot/start.sh\'')
     await ctx.send('Starting Server...')
     for i in range (4):
         time.sleep(30)
@@ -32,7 +32,7 @@ async def start(ctx):
     if started == 0:print("There was an error starting server")
 @bot.command(name='stop')
 async def stop(ctx):
-    os.system('ssh michel@192.168.15.88 ~/MCserverbot/stop.sh')
+    os.system('ssh michel@192.168.15.88 \'~/MCserverbot/stop.sh\'')
     await ctx.send('Server Stopped')
 bot.run(TOKEN)
 
