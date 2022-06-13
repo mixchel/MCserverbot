@@ -3,14 +3,14 @@ import discord
 import time 
 from dotenv import load_dotenv
 from discord.ext import commands
-from mcstatus import MinecraftServer
+from mcstatus import JavaServer
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 bot = commands.Bot(command_prefix='>')
 def get_ip():
     return (os.popen('grep server-ip ~/MCserver/server.properties').read())[10:]
-server = MinecraftServer.lookup(get_ip())
+server = JavaServer.lookup(get_ip())
 @bot.command(name='ip')
 async def ipcheck(ctx):
     await ctx.send(get_ip())
