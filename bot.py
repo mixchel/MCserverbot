@@ -4,12 +4,17 @@ import time
 from dotenv import load_dotenv
 from discord.ext import commands
 from mcstatus import JavaServer
+# Setting up intents
+my_intents = discord.Intents.default()
+my_intents.message_content = True
 load_dotenv()
+#Loading Token
 TOKEN = os.getenv('DISCORD_TOKEN')
-client = discord.Client()
-bot = commands.Bot(command_prefix='>')
+client = discord.Client(intents=my_intents)
+bot = commands.Bot(command_prefix='>', intents=my_intents)
 def get_ip():
-    return (os.popen('grep server-ip ~/MCserver/server.properties').read())[10:]
+    return "104.248.230.246"
+# Defining the Server
 server = JavaServer.lookup(get_ip())
 @bot.command(name='ip')
 async def ipcheck(ctx):
