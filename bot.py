@@ -22,7 +22,7 @@ def server_is_on():
     else:
         return 1
 # Defining the Server
-server = JavaServer.lookup(get_ip())
+server = JavaServer.lookup(get_ip()+":25565")
 @bot.command(name='ip')
 async def ipcheck(ctx):
     await ctx.send(get_ip())
